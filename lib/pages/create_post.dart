@@ -47,69 +47,78 @@ class _CreatePostState extends State<CreatePost> {
       appBar: AppBar(
         title: Text("Create Post", style: TextStyle(color: Colors.white, fontSize: 28),),
       ),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                height: 55,
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey.shade300
-                ),
-                child: TextField(
-                  controller: titleController,
-                  decoration: InputDecoration(
-                    hintText: "Title",
-                    hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
-                    border: InputBorder.none
+      body: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Center(
+              child: Column(
+                children: [
+                  Container(
+                    height: 55,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey.shade300
+                    ),
+                    child: TextField(
+                      controller: titleController,
+                      decoration: InputDecoration(
+                          hintText: "Title",
+                          hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
+                          border: InputBorder.none
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(height: 20,),
-              Container(
-                height: 55,
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey.shade300
-                ),
-                child: TextField(
-                  controller: contentController,
-                  decoration: InputDecoration(
-                      hintText: "Content",
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
-                      border: InputBorder.none
+                  SizedBox(height: 20,),
+                  Container(
+                    height: 55,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey.shade300
+                    ),
+                    child: TextField(
+                      controller: contentController,
+                      decoration: InputDecoration(
+                          hintText: "Content",
+                          hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
+                          border: InputBorder.none
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(height: 20,),
+                  SizedBox(height: 20,),
 
-                Container(
-                  height: 55,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.blue
+                  Container(
+                    height: 55,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.blue
+                    ),
+                    child: Center(
+                        child: GestureDetector(
+                          onTap: (){
+                            _apiCreatePost();
+                            print("ADD");
+                          },
+                          child: Text("Add Post", style: TextStyle(color: Colors.white, fontSize: 22),),
+                        )
+                    ),
                   ),
-                  child: Center(
-                    child: GestureDetector(
-                      onTap: (){
-                        _apiCreatePost();
-                        print("ADD");
-                      },
-                      child: Text("Add Post", style: TextStyle(color: Colors.white, fontSize: 22),),
-                    )
-                  ),
-                ),
 
-            ],
+                ],
+              ),
+            ),
           ),
-        ),
+          isLoading
+              ? Center(
+            child: CircularProgressIndicator(),
+          )
+              : SizedBox.shrink(),
+        ],
       )
     );
   }
