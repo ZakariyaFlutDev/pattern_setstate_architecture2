@@ -58,7 +58,7 @@ class _UpdatePostState extends State<UpdatePost> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Create Post",
+            "Update Post",
             style: TextStyle(color: Colors.white, fontSize: 28),
           ),
         ),
